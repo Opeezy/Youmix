@@ -1,4 +1,4 @@
-# PROJECT NAME
+# YouMix
 
 ## Dependancies
 * [pytube](https://github.com/pytube/pytube) 
