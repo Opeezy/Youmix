@@ -69,37 +69,46 @@ class Controller(MainWindow):
 			self.yt = YouTube(url, use_oauth=True, on_progress_callback=self.progress_func, on_complete_callback=self.complete_func)
 			self.yt.bypass_age_gate()
 
-			#Formatting duration given into 00:00:00 format
-			duration = self.yt.length
-			if duration/3600 >= 1:
-				hour = math.floor(duration/3600)
-				remaining = duration%3600
-				if remaining%60 >=0:
-					minute = math.floor(remaining/60)
-					second = remaining%60					
-				hour = f"0{hour}" if len(str(hour)) == 1 else hour
-				minute = f"0{minute}" if len(str(minute)) == 1 else minute
-				second = f"0{second}" if len(str(second)) == 1 else second	
-				self.video_duration.config(text=f"{hour}:{minute}:{remaining}")
-			else:
-				if duration/60 >= 1:
-					minute = minute = math.floor(duration/60)
-					second = duration%60
+			'''
+			Currently having problems fetching data from Yotube so I had to throw in a try/except block to catch this.
+			Not sure if this is a pytube problem or something on Yotube's end but guessing it's the latter. 
+			This was working the day before and now suddenly stopped
+			'''
+
+			try:
+				duration = self.yt.length
+				if duration/3600 >= 1:
+					hour = math.floor(duration/3600)
+					remaining = duration%3600
+					if remaining%60 >=0:
+						minute = math.floor(remaining/60)
+						second = remaining%60					
+					hour = f"0{hour}" if len(str(hour)) == 1 else hour
 					minute = f"0{minute}" if len(str(minute)) == 1 else minute
-					second = f"0{second}" if len(str(second)) == 1 else second
-					self.video_duration.config(text=f"00:{minute}:{second}")
+					second = f"0{second}" if len(str(second)) == 1 else second	
+					self.video_duration.config(text=f"{hour}:{minute}:{remaining}")
 				else:
-					print(len(str(duration)))
-					second = f"0{duration}" if len(str(duration)) == 1 else duration
-					self.video_duration.config(text=f"00:00:{second}")
+					if duration/60 >= 1:
+						minute = minute = math.floor(duration/60)
+						second = duration%60
+						minute = f"0{minute}" if len(str(minute)) == 1 else minute
+						second = f"0{second}" if len(str(second)) == 1 else second
+						self.video_duration.config(text=f"00:{minute}:{second}")
+					else:
+						print(len(str(duration)))
+						second = f"0{duration}" if len(str(duration)) == 1 else duration
+						self.video_duration.config(text=f"00:00:{second}")
+	
+				self.video_title.config(text=self.yt.title)
+				self.video_author.config(text=self.yt.author)
+				self.audio_asc = self.yt.streams.filter(only_audio=True).order_by('abr')
+				self.audio_desc = self.yt.streams.filter(only_audio=True).order_by('abr')[::-1]
+				self.audio_loaded = True
 
-			self.video_title.config(text=self.yt.title)
-			self.video_author.config(text=self.yt.author)
-			self.audio_asc = self.yt.streams.filter(only_audio=True).order_by('abr')
-			self.audio_desc = self.yt.streams.filter(only_audio=True).order_by('abr')[::-1]
-			self.audio_loaded = True
-
-			self.sort_streams()
+				self.sort_streams()
+			except Exception as e:
+				print(f"{e}: Video Unavailable")
+				self.video_title.config(text="Video Unavailable")
 
 			self.process_in_progress = False
 			self.button_states(True)
