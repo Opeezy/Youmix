@@ -6,4 +6,4 @@ __version__ = "0.1.0"
 
 if __name__ == "__main__":
 	app = Controller(__version__)
-	app.mainloop()z
+	app.mainloop()
