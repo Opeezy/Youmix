@@ -1,7 +1,8 @@
 from threading import Thread
 from controller import Controller
 
-__author__ = "opeezy17"
+__title__ = "YouMix"
+__author__ = "Chris Openshaw, Blake Calhoun"
 __version__ = "0.1.0"
 
 if __name__ == "__main__":
