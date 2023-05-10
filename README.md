@@ -2,7 +2,7 @@
 
 ## Dependancies
 * [pytube](https://github.com/pytube/pytube) 
-* [pydub](https://github.com/jiaaro/pydub)
+* [pydub](https://github.com/jiaaro/pydub) (not implemented yet)
 
 ## Currently working
 
