@@ -13,8 +13,8 @@ from threading import Thread, currentThread
 from gui import MainWindow
 
 class Controller(MainWindow):
-	def __init__(self, version):
-		super().__init__(version)
+	def __init__(self, version, title):
+		super().__init__(version, title)
 
 		self.process_in_progress = True
 		self.audio_loaded = False

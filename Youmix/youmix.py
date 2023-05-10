@@ -6,5 +6,5 @@ __author__ = "Chris Openshaw, Blake Calhoun"
 __version__ = "0.1.0"
 
 if __name__ == "__main__":
-	app = Controller(__version__)
+	app = Controller(__version__, __title__)
 	app.mainloop()

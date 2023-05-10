@@ -15,14 +15,14 @@ SRC_DIR = os.getcwd()
 PROJECT_DIR = os.path.dirname(SRC_DIR)
 
 class MainWindow(tk.Tk):
-	def __init__(self, version):
+	def __init__(self, version, title):
 		super().__init__()
 
 		t = currentThread()
 		print(f"Initializing thread {t} for MainWindow()")	
 
 		#main window
-		self.title(f"Youtube Converter {version}")
+		self.title(title)
 		self.geometry("800x400+560+340")
 		self.resizable(False,False)
 		self.iconbitmap(f"{PROJECT_DIR}\\img\\icon.ico")
