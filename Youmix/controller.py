@@ -69,12 +69,6 @@ class Controller(MainWindow):
 			self.yt = YouTube(url, use_oauth=True, on_progress_callback=self.progress_func, on_complete_callback=self.complete_func)
 			self.yt.bypass_age_gate()
 
-			'''
-			Currently having problems fetching data from Yotube so I had to throw in a try/except block to catch this.
-			Not sure if this is a pytube problem or something on Yotube's end but guessing it's the latter. 
-			This was working the day before and now suddenly stopped
-			'''
-
 			try:
 				duration = self.yt.length
 				if duration/3600 >= 1:
@@ -107,7 +101,7 @@ class Controller(MainWindow):
 
 				self.sort_streams()
 			except Exception as e:
-				print(f"{e}: Video Unavailable")
+				print(f"Video Unavailable")
 				self.video_title.config(text="Video Unavailable")
 
 			self.process_in_progress = False
