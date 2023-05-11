@@ -1,4 +1,3 @@
-from threading import Thread
 from controller import Controller
 
 __title__ = "YouMix"
