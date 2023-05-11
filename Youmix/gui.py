@@ -35,9 +35,14 @@ class MainWindow(tk.Tk):
 		self.file_menu = Menu(self, tearoff=False)
 		self.menubar.add_cascade(label="File", menu=self.file_menu, underline=0)
 
+		self.edit_menu = Menu(self, tearoff=False)
+		self.menubar.add_cascade(label="Edit", menu=self.edit_menu, underline=0)
+
 		#menu commands
 		self.file_menu.add_command(label='Save Selected', command=lambda: self.execute_thread(self.save_selected, "save_selected()"))
 		self.file_menu.add_command(label='Save All', command=lambda: self.execute_thread(self.save_all, "save_all()"))
+		self.edit_menu.add_command(label='Edit Selected')
+
 
 		#converter field
 		self.convert_frame = Frame(self, bg="#cccccc", relief=RIDGE, bd=2)

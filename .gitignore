@@ -1,2 +1,7 @@
-src/__pycache__/
+YouMix/__pycache__/
 __audio__/
+Scripts/
+Lib/
+img/
+
+*.cfg
