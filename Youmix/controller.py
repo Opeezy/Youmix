@@ -39,7 +39,7 @@ class Controller(MainWindow):
 		self.progress_title.pack(side=TOP)
 		self.progress_determinate.pack(side=BOTTOM)
 
-	def unpack_pack_determinate_bar(self):
+	def unpack_determinate_bar(self):
 		self.progress_determinate_frame.pack_forget()
 		self.progress_title.pack_forget()
 		self.progress_determinate.pack_forget()
@@ -60,7 +60,7 @@ class Controller(MainWindow):
 		_url = self.url_text.get()
 		if _url.lower().startswith("http"):
 			self.button_states(False)
-			self.unpack_pack_determinate_bar()
+			self.unpack_determinate_bar()
 			self.execute_thread(self.run_indeterminate_bar, "run_indeterminate_bar()")
 
 			self.video_title.config(text="Converting video...")
