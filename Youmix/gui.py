@@ -41,7 +41,7 @@ class MainWindow(tk.Tk):
 		#menu commands
 		self.file_menu.add_command(label='Save Selected', command=lambda: self.execute_thread(self.save_selected, "save_selected()"))
 		self.file_menu.add_command(label='Save All', command=lambda: self.execute_thread(self.save_all, "save_all()"))
-		self.edit_menu.add_command(label='Edit Selected')
+		self.edit_menu.add_command(label='Edit Selected', command=lambda: self.execute_thread(self.edit_selected, "edit_selected()"))
 
 
 		#converter field

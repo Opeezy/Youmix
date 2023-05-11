@@ -10,7 +10,9 @@ from tkinter import ttk
 from tkinter import filedialog as fd
 from pytube import YouTube
 from threading import Thread, currentThread
+from duration import format_length
 from gui import MainWindow
+from editor import EditWindow
 
 class Controller(MainWindow):
 	def __init__(self, version, title):
@@ -55,8 +57,8 @@ class Controller(MainWindow):
 		self.progress_indeterminate.pack_forget()
 
 	def load_video(self):
-		url = self.url_text.get()
-		if url.lower().startswith("http"):
+		_url = self.url_text.get()
+		if _url.lower().startswith("http"):
 			self.button_states(False)
 			self.unpack_pack_determinate_bar()
 			self.execute_thread(self.run_indeterminate_bar, "run_indeterminate_bar()")
@@ -66,43 +68,16 @@ class Controller(MainWindow):
 			self.video_duration.config(text="")
 			self.video_streams.delete(0, (self.video_streams.size()-1))
 
-			self.yt = YouTube(url, use_oauth=True, on_progress_callback=self.progress_func, on_complete_callback=self.complete_func)
+			self.yt = YouTube(_url, use_oauth=True, on_progress_callback=self.progress_func, on_complete_callback=self.complete_func)
 			self.yt.bypass_age_gate()
 
-			try:
-				duration = self.yt.length
-				if duration/3600 >= 1:
-					hour = math.floor(duration/3600)
-					remaining = duration%3600
-					if remaining%60 >=0:
-						minute = math.floor(remaining/60)
-						second = remaining%60					
-					hour = f"0{hour}" if len(str(hour)) == 1 else hour
-					minute = f"0{minute}" if len(str(minute)) == 1 else minute
-					second = f"0{second}" if len(str(second)) == 1 else second	
-					self.video_duration.config(text=f"{hour}:{minute}:{remaining}")
-				else:
-					if duration/60 >= 1:
-						minute = minute = math.floor(duration/60)
-						second = duration%60
-						minute = f"0{minute}" if len(str(minute)) == 1 else minute
-						second = f"0{second}" if len(str(second)) == 1 else second
-						self.video_duration.config(text=f"00:{minute}:{second}")
-					else:
-						print(len(str(duration)))
-						second = f"0{duration}" if len(str(duration)) == 1 else duration
-						self.video_duration.config(text=f"00:00:{second}")
-	
-				self.video_title.config(text=self.yt.title)
-				self.video_author.config(text=self.yt.author)
-				self.audio_asc = self.yt.streams.filter(only_audio=True).order_by('abr')
-				self.audio_desc = self.yt.streams.filter(only_audio=True).order_by('abr')[::-1]
-				self.audio_loaded = True
-
-				self.sort_streams()
-			except Exception as e:
-				print(f"Video Unavailable")
-				self.video_title.config(text="Video Unavailable")
+			self.video_duration.config(text=format_length(self.yt.length))
+			self.video_title.config(text=self.yt.title)
+			self.video_author.config(text=self.yt.author)
+			self.audio_asc = self.yt.streams.filter(only_audio=True).order_by('abr')
+			self.audio_desc = self.yt.streams.filter(only_audio=True).order_by('abr')[::-1]
+			self.audio_loaded = True
+			self.sort_streams()
 
 			self.process_in_progress = False
 			self.button_states(True)
@@ -186,7 +161,11 @@ class Controller(MainWindow):
 			self.progress_title.config(text=f"{self.file_name} - 0%")
 			stream.download(output_path=path, filename=self.file_name)
 
-		self.button_states(True)	
+		self.button_states(True)
+
+	def edit_selected(self):
+		app = EditWindow()
+		app.mainloop()
 
 
 if __name__ == '__main__':
