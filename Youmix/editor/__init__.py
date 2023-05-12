@@ -1,1 +1,1 @@
-from editor.gui import EditWindow
+from editor.editorcontroller import EditController

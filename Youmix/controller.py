@@ -11,7 +11,7 @@ from pytube import YouTube
 from threading import Thread, currentThread
 from duration import format_length
 from gui import MainWindow
-from editor import EditWindow
+from editor import EditController
 
 class Controller(MainWindow):
 	def __init__(self, version, title):
@@ -163,7 +163,7 @@ class Controller(MainWindow):
 		self.button_states(True)
 
 	def edit_selected(self):
-		app = EditWindow()
+		app = EditController()
 		app.mainloop()
 
 

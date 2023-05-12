@@ -4,5 +4,7 @@ __audio__/
 Scripts/
 Lib/
 img/
+venv/
 
 *.cfg
+.idea/
