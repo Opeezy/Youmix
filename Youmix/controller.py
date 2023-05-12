@@ -163,7 +163,9 @@ class Controller(MainWindow):
 		self.button_states(True)
 
 	def edit_selected(self):
-		app = EditController()
+		_selected_indices = [i for i in self.video_streams.curselection()]
+		_selected_streams = [self.current_streams[s] for s in _selected_indices]
+		app = EditController(_selected_streams)
 		app.mainloop()
 
 
