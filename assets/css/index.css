@@ -22,45 +22,64 @@ header {
     color: white;
     margin: 0px 0px 0px 15px;
     text-shadow: 2px 3px 5px black;
-}
-
-#nav-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 100%;
-    width: 15%;
-}
-
-a {
-    text-decoration: none;
-}
-
-.header-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5em;
-    margin: 0;
-    color: white;
-    width: 50%;
-    height: 100%;
-    flex-grow: 1;
     transition: .5s;
 }
 
-.header-buttons:hover {
-    background-color: rgb(186, 0, 0);
+#input-div {
+    display: inline-flex;
+    align-items: center;
+    width: 50%;
+    height: 100%
 }
 
-#stopper {
-    width: 10px;
+#search {
+    color: white;
+    width: 80%;
+    height: 50%;
+    background-color: rgb(59, 59, 59);
+    border-radius: 25px;
+}
+
+#search-button {
+    width: 20%;
     height: 100%;
-    background-color: rgb(125, 116, 99);
+    background-color: transparent;
+    border: 0px;
+    box-shadow: 0px;
+    color: white;
+    font-size: 1.2em;
+    transition: .5s;
+}
+
+#search-button:hover {
+    color: aqua;
+}
+
+#github-button {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-right: 1%;
+    border-radius: 50%;
+}
+
+#github-button:hover {
+    background-color: rgb(30, 182, 252);
+}
+
+#github-logo {
+    width: 100%;
+    height: 100%;
 }
 
 main {
     width: 100%;
     height: 500px;
     background-color: rgb(91, 91, 91);
+}
+
+#stream-list {
 }

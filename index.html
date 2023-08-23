@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+    <script>
+        function get_url () {
+            var url = document.getElementById("search").value
+            console.log(url)
+        }
+    </script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +15,14 @@
 <body>
     <header>
         <h1 id="title">YouMix</h1>
-        <nav id="nav-bar">
-            <a class="header-buttons" href="">Repo</a>
-            <a class="header-buttons" href="">Contact</a>
-        </nav>
+        <div id="input-div">
+            <input id="search" type="url">
+            <button onclick="get_url ()" id="search-button">Search</button>
+        </div>
+        <a id="github-button" href="#"><img id="github-logo" src="assets/img/github-mark-white.png" alt="github logo"></a>
     </header>
-    <main></main>
+    <main>
+        Py
+    </main>
 </body>
 </html>
